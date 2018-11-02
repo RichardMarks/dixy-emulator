@@ -53,30 +53,11 @@
               <button class="btn-save">Save</button>
               <button class="btn-load">Load</button>
               <button class="btn-download">Download</button>
+              <button class="btn-upload">Upload</button>
               <button class="btn-run">▶</button>
             </div>
           </p>
           <p>Name: <input class="prg-filename" type="text" /></p>
-
-          <p>Instructions:</p>
-          <ul class="help">
-            <li>0 - increment data pointer</li>
-            <li>F - decrement data pointer</li>
-            <li>1 - increment value of byte at data pointer</li>
-            <li>E - decrement value of byte at data pointer</li>
-            <li>2 - output byte at data pointer to standard output device</li>
-            <li>D - accept byte of input from standard input device, storing value at data pointer</li>
-            <li>3 - if byte at data pointer is zero, move instruction pointer to after next 'C' instruction</li>
-            <li>C - if byte at data pointer is not zero, move instruction pointer to after last '3' instruction</li>
-            <li>4 - multiply value of X storage by byte at data pointer, storing product in Y storage</li>
-            <li>B - divide value of X storage by byte at data pointer, storing quotient in Y storage</li>
-            <li>5 - copy value of byte at data pointer into X storage</li>
-            <li>A - copy value of X storage into byte at data pointer</li>
-            <li>6 - copy value of byte at data pointer into Y storage</li>
-            <li>9 - copy value of Y storage into byte at data pointer</li>
-            <li>7 - add value of X storage and byte at data pointer, storing sum in Y storage</li>
-            <li>8 - subtract value of X from byte at data pointer, storing difference in Y storage</li>
-          </ul>
 
           <p>Code:</p>
           <div class="code-assist">
@@ -103,8 +84,30 @@
             </div>
           </div>
 
-          <p>Source: </p>
+          <p>Dixy-lang sourcecode: </p>
           <div class="source"></div>
+
+          <p>Dixy-lang instruction set:</p>
+          <ul class="help">
+            <li>0 - increment data pointer</li>
+            <li>F - decrement data pointer</li>
+            <li>1 - increment value of byte at data pointer</li>
+            <li>E - decrement value of byte at data pointer</li>
+            <li>2 - output byte at data pointer to standard output device</li>
+            <li>D - accept byte of input from standard input device, storing value at data pointer</li>
+            <li>3 - if byte at data pointer is zero, move instruction pointer to after next 'C' instruction</li>
+            <li>C - if byte at data pointer is not zero, move instruction pointer to after last '3' instruction</li>
+            <li>4 - multiply value of X storage by byte at data pointer, storing product in Y storage</li>
+            <li>B - divide value of X storage by byte at data pointer, storing quotient in Y storage</li>
+            <li>5 - copy value of byte at data pointer into X storage</li>
+            <li>A - copy value of X storage into byte at data pointer</li>
+            <li>6 - copy value of byte at data pointer into Y storage</li>
+            <li>9 - copy value of Y storage into byte at data pointer</li>
+            <li>7 - add value of X storage and byte at data pointer, storing sum in Y storage</li>
+            <li>8 - subtract value of X from byte at data pointer, storing difference in Y storage</li>
+          </ul>
+
+
         </div>
       </div>
     </div>
