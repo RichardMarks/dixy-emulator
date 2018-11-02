@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const ui = {}
 
   ui.chkReset = document.querySelector('.chk-reset-on-run')
+  ui.chkClearOutput = document.querySelector('.chk-clear-on-run')
   ui.dataPre = document.querySelector('.data')
   ui.dataSzInput = document.querySelector('.data-sz')
   ui.sourcePre = document.querySelector('.source')
@@ -161,6 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ui.btnDownload.addEventListener('click', () => {})
 
   ui.btnRun.addEventListener('click', () => {
+    if (ui.chkClearOutput) {
+      ui.outputPre.innerText = ''
+    }
+
     if (ui.chkReset.checked) {
       resetSystem()
       updateSysDisplay()
