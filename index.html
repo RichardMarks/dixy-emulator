@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DIXY Emulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>DIXY Emulator <span>&copy; 2018, Richard Marks</span></h1>
+
+      <div class="columns no-border">
+        <div class="column">
+
+          <div class="l-col">
+            <p>System: </p>
+            <div class='btn-group'>
+              <button class="btn-reset">Reset</button>
+            </div>
+          </div>
+
+          <p class="p-opt">
+            <input class="chk-reset-on-run" type="checkbox" checked />
+            <label>Reset system before running code</label>
+          </p>
+
+          <div class="columns dixy">
+            <label class="column">D = <span class="d-value"></span></label>
+            <label class="column">I = <span class="i-value"></span></label>
+            <label class="column">X = <span class="x-value"></span></label>
+            <label class="column">Y = <span class="y-value"></span></label>
+          </div>
+
+          <p class="data-p">Data: <input class="data-sz" type="number" value="256" step="16" min="256" max="4096"> bytes</p>
+          <pre class="data"></pre>
+          <p class="out-p">Output:</p>
+          <pre class="output"></pre>
+        </div>
+
+        <div class="column">
+          <p>
+            <label>Program:</label>
+            <div class="btn-group">
+              <button class="btn-new">New</button>
+              <button class="btn-save">Save</button>
+              <button class="btn-load">Load</button>
+              <button class="btn-download">Download</button>
+              <button class="btn-run">▶</button>
+            </div>
+          </p>
+          <p>Name: <input class="prg-filename" type="text" /></p>
+
+          <p>Instructions:</p>
+          <ul class="help">
+            <li>0 - increment data pointer</li>
+            <li>F - decrement data pointer</li>
+            <li>1 - increment value of byte at data pointer</li>
+            <li>E - decrement value of byte at data pointer</li>
+            <li>2 - output byte at data pointer to standard output device</li>
+            <li>D - accept byte of input from standard input device, storing value at data pointer</li>
+            <li>3 - if byte at data pointer is zero, move instruction pointer to after next 'C' instruction</li>
+            <li>C - if byte at data pointer is not zero, move instruction pointer to after last '3' instruction</li>
+            <li>4 - multiply value of X storage by byte at data pointer, storing product in Y storage</li>
+            <li>B - divide value of X storage by byte at data pointer, storing quotient in Y storage</li>
+            <li>5 - copy value of byte at data pointer into X storage</li>
+            <li>A - copy value of X storage into byte at data pointer</li>
+            <li>6 - copy value of byte at data pointer into Y storage</li>
+            <li>9 - copy value of Y storage into byte at data pointer</li>
+            <li>7 - add value of X storage and byte at data pointer, storing sum in Y storage</li>
+            <li>8 - subtract value of X from byte at data pointer, storing difference in Y storage</li>
+          </ul>
+
+          <p>Code:</p>
+          <div class="code-assist">
+            <div class="instructions">
+              <button class='btn-0'>0</button>
+              <button class='btn-f'>F</button>
+              <button class='btn-1'>1</button>
+              <button class='btn-e'>E</button>
+              <button class='btn-2'>2</button>
+              <button class='btn-d'>D</button>
+              <button class='btn-3'>3</button>
+              <button class='btn-c'>C</button>
+            </div>
+            <div class="instructions">
+              <button class='btn-4'>4</button>
+              <button class='btn-b'>B</button>
+              <button class='btn-5'>5</button>
+              <button class='btn-a'>A</button>
+              <button class='btn-6'>6</button>
+              <button class='btn-9'>9</button>
+              <button class='btn-7'>7</button>
+              <button class='btn-8'>8</button>
+              <button class='btn-back'>Delete</button>
+            </div>
+          </div>
+
+          <p>Source: </p>
+          <div class="source"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

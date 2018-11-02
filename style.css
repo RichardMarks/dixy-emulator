@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: monospace;
+  background: #333;
+  color: white;
+}
+.columns {
+  display: flex;
+  border: 1px solid black;
+}
+.dixy {
+  border: 0;
+  padding: 10px;
+  background: black;
+  border-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 32px;
+}
+.l-col {
+  margin-left: 10px;
+}
+.p-opt {
+  margin-left: 10px;
+}
+.dixy > * {
+  text-align: center;
+}
+
+.column {
+  flex: 1;
+  border-right: 1px dashed #777;
+  margin-right: 20px;
+}
+.column:last-of-type {
+  margin-right: 0;
+  border-right: 0;
+}
+
+.instructions {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.instructions > button {
+  min-width: 32px;
+  max-width: 32px;
+  width: 32px;
+  min-height: 32px;
+  border: 0;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  margin: 2px;
+  font-size: 1.0em;
+  cursor: pointer;
+}
+.instructions > button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+.instructions > button:focus {
+  outline: none;
+}
+.data-p {
+  margin-left: 10px;
+}
+.data-sz {
+  font-family: monospace;
+  padding: 10px;
+  font-size: 1.2em;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0;
+  border-radius: 10px;
+}
+.data-sz:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+.btn-back {
+  background: #c00 !important;
+  min-width: 60px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-back:hover {
+  background: #e00 !important;
+}
+
+.help {
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  margin-right: 20px;
+  font-family: sans-serif;
+  font-size: 1.2em;
+  padding: 10px;
+  list-style: none;
+  cursor: default;
+  background: #222;
+}
+.help > li:hover {
+  background: rgba(0, 128, 255, 0.7);
+  color: yellow;
+}
+
+.output {
+  background: black;
+  color: white;
+  min-height: 250px;
+  margin-left: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.data {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  max-height: 262px;
+  overflow-y: auto;
+}
+
+.prg-filename {
+  font-family: monospace;
+  padding: 10px;
+  font-size: 1.2em;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0;
+  border-radius: 10px;
+}
+.prg-filename:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.code-wrap {
+  display: flex;
+}
+.code-textarea {
+  flex: 1;
+  margin-right: 20px;
+  font-family: monospace;
+  padding: 10px;
+  font-size: 1.2em;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0;
+  border-radius: 10px;
+}
+.code-textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.assist-anchor {
+  color: orange;
+}
+
+.source {
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+.btn-group > button {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+  min-height: 32px;
+  max-height: 32px;
+}
+.btn-group > button:last-of-type {
+  margin-right: 0;
+}
+.btn-group > button:focus {
+  outline: none;
+}
+.btn-group > button:hover {
+  background: #fea;
+}
+
+.btn-new {}
+.btn-save {}
+.btn-load {}
+.btn-download {}
+
+.btn-run {
+  min-width: 32px;
+  max-width: 32px;
+  font-size: 20px;
+  line-height: 32px;
+  color: #0e0;
+  background: #090;
+}
+
+.btn-run:hover {
+  background: yellow !important;
+  color: black;
+}
+
+.out-p {
+  margin-left: 10px;
+}
+
+.no-border {
+  border: 0 !important;
+}
