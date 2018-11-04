@@ -46,8 +46,8 @@ body {
 }
 .instructions > button {
   min-width: 32px;
-  max-width: 32px;
-  width: 32px;
+  /* max-width: 32px; */
+  /* width: 32px; */
   min-height: 32px;
   border: 0;
   background: black;
@@ -82,13 +82,16 @@ body {
 }
 .btn-back {
   background: #c00 !important;
-  min-width: 60px !important;
+  /* min-width: 60px !important; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .btn-back:hover {
   background: #e00 !important;
+}
+.btn-back i {
+  margin-right: 5px;
 }
 
 .help {
@@ -192,7 +195,7 @@ body {
 .btn-group > button:hover {
   background: #fea;
 }
-
+/*
 .btn-new {}
 .btn-save {}
 .btn-load {}
@@ -210,6 +213,10 @@ body {
 .btn-run:hover {
   background: yellow !important;
   color: black;
+} */
+
+.hidden-file-input {
+  display: none;
 }
 
 .out-p {

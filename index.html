@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>DIXY Emulator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
   </head>
   <body>
@@ -15,13 +16,29 @@
         <div class="column">
 
           <div class="l-col">
-            <p>System: </p>
+
+            <p><i class="fas fa-microchip"></i> System: </p>
             <div class='btn-group'>
-              <button class="btn-reset">Reset</button>
+              <button class="btn-reset"><i class="fas fa-power-off"></i> Reset</button>
             </div>
           </div>
 
-          <p class="p-opt">
+
+
+          <div class="columns dixy">
+            <label class="column">D = <span class="d-value"></span></label>
+            <label class="column">I = <span class="i-value"></span></label>
+            <label class="column">X = <span class="x-value"></span></label>
+            <label class="column">Y = <span class="y-value"></span></label>
+          </div>
+
+          <p class="data-p"><i class="fas fa-memory"></i> Data: <input class="data-sz" type="number" value="256" step="16" min="256" max="4096"> bytes</p>
+          <pre class="data"></pre>
+          <p class="out-p"><i class="fas fa-terminal"></i> Output:</p>
+
+          <pre class="output"></pre>
+          <p class="p-opt"><i class="fas fa-cogs"></i>
+            Settings:
             <div>
               <input class="chk-reset-on-run" type="checkbox" checked />
               <label>Reset system before running code</label>
@@ -31,30 +48,19 @@
                 <label>Clear output before running code</label>
               </div>
           </p>
-
-          <div class="columns dixy">
-            <label class="column">D = <span class="d-value"></span></label>
-            <label class="column">I = <span class="i-value"></span></label>
-            <label class="column">X = <span class="x-value"></span></label>
-            <label class="column">Y = <span class="y-value"></span></label>
-          </div>
-
-          <p class="data-p">Data: <input class="data-sz" type="number" value="256" step="16" min="256" max="4096"> bytes</p>
-          <pre class="data"></pre>
-          <p class="out-p">Output:</p>
-          <pre class="output"></pre>
         </div>
 
         <div class="column">
           <p>
-            <label>Program:</label>
+            <label><i class="fas fa-project-diagram"></i> Program:</label>
             <div class="btn-group">
-              <button class="btn-new">New</button>
-              <button class="btn-save">Save</button>
-              <button class="btn-load">Load</button>
-              <button class="btn-download">Download</button>
-              <button class="btn-upload">Upload</button>
-              <button class="btn-run">▶</button>
+              <button class="btn-new"><i class="fas fa-file"></i> New</button>
+              <button class="btn-save"><i class="fas fa-download"></i> Save Local</button>
+              <button class="btn-load"><i class="fas fa-upload"></i> Load Local</button>
+              <button class="btn-download"><i class="fas fa-file-download"></i> Save File</button>
+              <button class="btn-upload"><i class="fas fa-file-upload"></i> Load File</button>
+              <button class="btn-run"><i class="fas fa-play"></i> Run</button>
+              <input class="hidden-file-input" type="file" />
             </div>
           </p>
           <p>Name: <input class="prg-filename" type="text" /></p>
@@ -80,7 +86,7 @@
               <button class='btn-9'>9</button>
               <button class='btn-7'>7</button>
               <button class='btn-8'>8</button>
-              <button class='btn-back'>Delete</button>
+              <button class='btn-back'><i class="fas fa-backspace"></i> Delete</button>
             </div>
           </div>
 

@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ui.btnSave = document.querySelector('.btn-save')
   ui.btnLoad = document.querySelector('.btn-load')
   ui.btnDownload = document.querySelector('.btn-download')
+  ui.btnUpload = document.querySelector('.btn-upload')
   ui.prgFilename = document.querySelector('.prg-filename')
+  ui.hiddenFileUploadInput = document.querySelector('.hidden-file-input')
 
   ui.btnRemoveLastInstruction = document.querySelector('.btn-back')
 
@@ -47,6 +49,65 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const code = []
+
+  const parseCode = input => {
+    const makeResult = (code, mem) => {
+      return { code, mem }
+    }
+
+    if (!input) {
+      return makeResult('', 0)
+    }
+
+    const { length } = input
+
+    if (!length) {
+      return makeResult('', 0)
+    }
+
+    const code = []
+    const data = `${input}`.trim()
+    const valid = '1234567890ABCDEFabcdef'.split('')
+    const count = valid.length
+    let p = 0
+    let mem = 0x80
+
+    // first line is memory declaration
+    // hexadecimal number of bytes of memory storage desired
+    // minimum value is $0080
+    // maximum value is $1000
+    // $0000
+    if (data[p] === '$') {
+      p += 1
+      const memBytes = []
+      while (memBytes.length != 4 && data[p] && p != length && data[p] !== '\n') {
+        memBytes.push(data[p])
+        p += 1
+      }
+      const memValue = parseInt(memBytes.join(''), 16)
+      if (!isNaN(memValue)) {
+        mem = memValue
+        mem = mem < 0x80 ? 0x80 : mem
+        mem = mem > 0x1000 ? 0x1000 : mem
+      }
+    }
+
+    while (data[p] && p != length) {
+      if (data[p] === ';') {
+        while (data[p] && p != length && data[p] !== '\n') { p += 1 }
+      }
+      let ok = false
+      for (let i = 0; i < count; i += 1) {
+        if (valid[i] === data[p]) {
+          ok = true
+          break
+        }
+      }
+      ok && code.push(data[p])
+      p += 1
+    }
+    return makeResult(code.join(''), mem)
+  }
 
   const byteHex = value => {
     const valueStr = value.toString(16)
@@ -159,7 +220,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  ui.btnDownload.addEventListener('click', () => {})
+  ui.hiddenFileUploadInput.addEventListener('change', () => {
+    const files = ui.hiddenFileUploadInput.files
+    const file = files[0]
+
+    if (file) {
+      const reader = new window.FileReader()
+      reader.addEventListener('load', loadEvent => {
+        const contents = loadEvent.target.result
+        const { code: loadedCode, mem } = parseCode(contents)
+
+        code.length = 0
+        ui.sourcePre.innerText = 'No code'
+        ui.outputPre.innerText = 'Ready.'
+        ui.dataSzInput.value = mem
+        const bytes = ~~(ui.dataSzInput.value)
+        if (bytes !== sys.data.bytes.length) {
+          sys.data.bytes = new Array(bytes)
+          sys.data.reset()
+          updateDataDisplay()
+        }
+        resetSystem()
+        updateSysDisplay()
+        updateDataDisplay()
+        ui.prgFilename.value = file.name
+
+        loadedCode
+          .split('')
+          .map(c => parseInt(c, 16))
+          .forEach(instruction => code.push(instruction))
+        ui.sourcePre.innerText = code.map(c => c.toString(16)).join(' ')
+
+        ui.hiddenFileUploadInput.value = ''
+      })
+      reader.readAsText(file)
+    }
+  })
+
+  ui.btnUpload.addEventListener('click', () => {
+    ui.hiddenFileUploadInput.click()
+  })
+
+  const wordHex = word => {
+    let hex = word.toString(16)
+    hex = hex.length === 1 ? `000${hex}` : hex
+    hex = hex.length === 2 ? `00${hex}` : hex
+    hex = hex.length === 3 ? `0${hex}` : hex
+    return hex
+  }
+
+  ui.btnDownload.addEventListener('click', () => {
+    if (code.length === 0) {
+      return
+    }
+
+    const dataFmt = []
+    // memory declaration
+    dataFmt.push(`$${wordHex(sys.data.bytes.length)}\n`)
+
+    // instructions
+    code.map(instruction => instruction.toString(16))
+      .join('')
+      .match(/.{1,8}/g)
+      .forEach(octet => {
+        dataFmt.push(`${octet.split('').join(' ')}\n`)
+      })
+
+    const blob = new window.Blob([dataFmt.join('')], { type: 'text/plain' })
+    const href = window.URL.createObjectURL(blob)
+    const anchor = document.createElement('a')
+
+    let filename = ui.prgFilename.value || 'untitled.prg'
+    filename = `${filename}${Date.now()}`
+    anchor.download = filename
+    anchor.href = href
+    anchor.dataset.downloadurl = `text/plain:${filename}:${href}`
+    anchor.dispatchEvent(new window.MouseEvent('click', {
+      bubbles: true,
+      cancelable: false,
+      view: window
+    }))
+  })
 
   ui.btnRun.addEventListener('click', () => {
     if (ui.chkClearOutput) {
