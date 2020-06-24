@@ -1,3 +1,9 @@
+This repository is deprecated
+
+You want to [go here to check out the new DIXY](https://github.com/RichardMarks/dixy)
+
+------
+
 # DIXY
 
 JavaScript Virtual Hardware Device Emulator
